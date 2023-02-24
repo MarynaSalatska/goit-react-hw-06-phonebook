@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './FriendForm.module.css';
-
-export function FriendForm(props) {
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+export function FriendForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -23,7 +26,14 @@ export function FriendForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
     const contact = { name, number };
-    props.onSubmit(contact);
+    const isExist = contacts.some(({ name }) => {
+      return contact.name === name;
+    });
+    if (isExist) {
+      alert(`${contact.name} is already in contacts!`);
+      return;
+    }
+    dispatch(addContact(contact));
     reset();
   };
 
@@ -65,6 +75,4 @@ export function FriendForm(props) {
   );
 }
 
-FriendForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+

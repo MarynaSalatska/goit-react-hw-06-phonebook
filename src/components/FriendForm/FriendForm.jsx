@@ -24,15 +24,15 @@ export function FriendForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const contact = { name, number };
-    const isExist = contacts.some(({ name }) => {
-      return contact.name === name;
+    const newContact = { name, number };
+    const isExist = contacts.some(item => {
+      return item.name === name && item.number === number;
     });
     if (isExist) {
-      alert(`${contact.name} is already in contacts!`);
+      alert(`${name} is already in contacts!`);
       return;
     }
-    dispatch(addContact(contact));
+    dispatch(addContact(newContact));
     reset();
   };
 

@@ -2,7 +2,6 @@ import { FriendForm } from './FriendForm/FriendForm';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 
-
 export function App() {
   //////////////////////contacts
 

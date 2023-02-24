@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import css from './FriendForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
@@ -74,5 +73,3 @@ export function FriendForm({ onSubmit }) {
     </form>
   );
 }
-
-
